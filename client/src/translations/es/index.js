@@ -33,5 +33,7 @@ export const TRANSLATIONS_ES = {
     required: 'Campo requerido',
     tooShort: 'Demasiado corto',
     tooLong: 'Demasiado largo',
+    passwordRequirements:
+      'Debe contener de 16 a 128 caracteres, incluyendo al menos un/a minúscula, mayúscula, número y caracter especial',
   },
 }

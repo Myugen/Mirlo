@@ -32,12 +32,12 @@ const Input = styled.input`
     outline: none;
   }
 `
-const FormField = ({ field, form: { touched, errors }, title, ...props }) => {
+const FormField = ({ field, form: { errors }, title, ...props }) => {
   return (
     <Wrapper>
       <Label>{title}:</Label>
       <Input type="text" {...props} {...field} />
-      {touched[field.name] && errors[field.name] ? (
+      {errors[field.name] ? (
         <ErrorMessage>{errors[field.name]}</ErrorMessage>
       ) : null}
     </Wrapper>

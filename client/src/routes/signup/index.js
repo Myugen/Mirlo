@@ -42,6 +42,12 @@ const SignUp = () => {
       .min(3, t('validations.tooShort'))
       .max(320, t('validations.tooLong'))
       .required(t('validations.required')),
+    password: Yup.string()
+      .required(t('validations.required'))
+      .matches(
+        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{16,128}$/,
+        t('validations.passwordRequirements')
+      ),
   })
 
   return (
@@ -80,6 +86,12 @@ const SignUp = () => {
                     component={FormField}
                     placeholder={t('signUp.form.fields.email.example')}
                     title={t('signUp.form.fields.email.title')}
+                  />
+                  <Field
+                    name="password"
+                    component={FormField}
+                    placeholder={t('signUp.form.fields.password.example')}
+                    title={t('signUp.form.fields.password.title')}
                   />
                 </Form>
               </Formik>

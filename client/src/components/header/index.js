@@ -9,7 +9,7 @@ const Title = styled.div`
   justify-content: flex-start;
 `
 
-const Login = styled.div`
+const Logout = styled.div`
   flex: 1;
   display: flex;
   justify-content: flex-end;
@@ -26,7 +26,7 @@ const TitleButton = styled.button`
     outline: none;
   }
 `
-const LoginButton = styled.button`
+const LogoutButton = styled.button`
   font-size: 1rem;
   text-align: center;
   color: white;
@@ -55,9 +55,9 @@ const Header = () => {
       <Title>
         <TitleButton>{t('common.title')}</TitleButton>
       </Title>
-      <Login>
-        <LoginButton>{t('logIn.title')}</LoginButton>
-      </Login>
+      <Logout>
+        <LogoutButton>{t('header.logOut')}</LogoutButton>
+      </Logout>
     </Wrapper>
   )
 }

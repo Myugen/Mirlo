@@ -20,7 +20,7 @@ export const TRANSLATIONS_ES = {
         },
         email: {
           title: 'Correo electrónico',
-          example: 'Ej: joedoe@provider.com',
+          example: 'Ej: joe@email.com',
         },
         password: {
           title: 'Contraseña',

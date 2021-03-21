@@ -23,7 +23,7 @@ const SignUp = () => {
         <Header />
       </div>
       <div class="w-full h-full flex justify-center items-center">
-        <div class="w-1/5 h-3/5 bg-gray-900 rounded-xl shadow-2xl">
+        <div class="w-1/5 h-3/4 bg-gray-900 rounded-xl shadow-2xl">
           <div class="w-full h-1/4 flex justify-center items-center">
             <Title>{t('signUp.title')}</Title>
           </div>

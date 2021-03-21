@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import 'src/translations/i18n'
 
 const Wrapper = styled.div`
+  width: 100%;
   padding: 0.5em;
 `
 
@@ -21,6 +22,7 @@ const ErrorMessage = styled.h1`
 `
 
 const Input = styled.input`
+  width: 100%;
   padding: 0.5em;
   margin-top: 0.5em;
   font-family: 'Source Code Pro', monospace;

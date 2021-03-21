@@ -60,9 +60,12 @@ const SignUpForm = () => {
         style={{
           height: '100%',
           width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
         }}
       >
-        <div class="w-full h-3/4 flex flex-col items-center justify-start">
+        <div class="w-3/4 h-3/4 flex flex-col items-center justify-start">
           <Field
             name="username"
             component={FormField}

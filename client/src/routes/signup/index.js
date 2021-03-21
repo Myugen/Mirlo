@@ -38,6 +38,10 @@ const SignUp = () => {
       .min(2, t('validations.tooShort'))
       .max(20, t('validations.tooLong'))
       .required(t('validations.required')),
+    email: Yup.string()
+      .min(3, t('validations.tooShort'))
+      .max(320, t('validations.tooLong'))
+      .required(t('validations.required')),
   })
 
   return (
@@ -70,6 +74,12 @@ const SignUp = () => {
                     component={FormField}
                     placeholder={t('signUp.form.fields.username.example')}
                     title={t('signUp.form.fields.username.title')}
+                  />
+                  <Field
+                    name="email"
+                    component={FormField}
+                    placeholder={t('signUp.form.fields.email.example')}
+                    title={t('signUp.form.fields.email.title')}
                   />
                 </Form>
               </Formik>

@@ -7,5 +7,31 @@ export const TRANSLATIONS_ES = {
   },
   logIn: {
     title: 'Iniciar sesión',
+    send: 'Enviar',
+  },
+  signUp: {
+    title: 'Registrarse',
+    next: 'Siguiente',
+    form: {
+      fields: {
+        username: {
+          title: 'Nombre de usuario',
+          example: 'Ej: JoeDoe',
+        },
+        email: {
+          title: 'Correo electrónico',
+          example: 'Ej: joedoe@provider.com',
+        },
+        password: {
+          title: 'Contraseña',
+          example: 'Ej: 9#/~Y[QR#Q2Ny&q:',
+        },
+      },
+    },
+  },
+  validations: {
+    required: 'Campo requerido',
+    tooShort: 'Demasiado corto',
+    tooLong: 'Demasiado largo',
   },
 }

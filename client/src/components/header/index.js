@@ -42,7 +42,6 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  background-color: rgba(31, 41, 55, 1);
   padding: 10px 20px 0px 20px;
   overflow: hidden;
 `

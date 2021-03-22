@@ -1,7 +1,7 @@
-package requests
+package responses
 
 type NewUser struct {
+	ID       uint   `json:"id"`
 	UserName string `json:"username"`
-	Password string `json:"password"`
 	Email    string `json:"email"`
 }

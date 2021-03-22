@@ -40,7 +40,7 @@ func (suite *UserServiceTestSuite) TestCreateUser() {
 	var user models.User
 	var err error
 
-	var newUserReq = requests.NewUserRequest{
+	var newUserReq = requests.NewUser{
 		UserName: utils.RandString(15),
 		Password: utils.RandString(15),
 		Email:    utils.RandString(15),

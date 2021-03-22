@@ -12,7 +12,7 @@ type IUserServiceRepositories interface {
 }
 
 type IUserService interface {
-	Create(req requests.NewUserRequest) (models.User, error)
+	Create(req requests.NewUser) (models.User, error)
 }
 
 type userService struct {
@@ -25,7 +25,7 @@ func NewUserService(repositories repositories.IRepositories) *userService {
 	}
 }
 
-func (s *userService) Create(req requests.NewUserRequest) (models.User, error) {
+func (s *userService) Create(req requests.NewUser) (models.User, error) {
 	var err error
 	var user models.User
 

@@ -5,6 +5,8 @@ import (
 	"os"
 	"testing"
 
+	"github.com/alephshahor/Mirlo/server/utils"
+
 	"github.com/alephshahor/Mirlo/server/models"
 	"github.com/stretchr/testify/assert"
 
@@ -24,13 +26,12 @@ func (suite *UserTestSuite) SetupTest() {
 }
 
 func (suite *UserTestSuite) TestCreateUser() {
-	var userRepository UserRepository
 	var user = models.User{
-		UserName: "joeDoe",
-		Password: "1234",
-		Email:    "joeDoe@email.com",
+		UserName: utils.RandString(15),
+		Password: utils.RandString(15),
+		Email:    utils.RandString(15),
 	}
-	var err = userRepository.Create(&user)
+	var err = Repositories().User().Create(&user)
 	assert.Equal(suite.T(), err, nil)
 
 	var createdUser models.User

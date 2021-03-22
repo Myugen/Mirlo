@@ -7,17 +7,25 @@ import (
 	"github.com/alephshahor/Mirlo/server/utils"
 )
 
-type UserService struct {
-	userRepository *repositories.UserRepository
+type IUserServiceRepositories interface {
+	User() repositories.IUserRepository
 }
 
-func NewUserService(userRepository *repositories.UserRepository) *UserService {
-	return &UserService{
-		userRepository: userRepository,
+type IUserService interface {
+	Create(req requests.NewUserRequest) (models.User, error)
+}
+
+type userService struct {
+	repositories IUserServiceRepositories
+}
+
+func NewUserService(repositories repositories.IRepositories) *userService {
+	return &userService{
+		repositories: repositories,
 	}
 }
 
-func (s *UserService) Create(req requests.NewUserRequest) (models.User, error) {
+func (s *userService) Create(req requests.NewUserRequest) (models.User, error) {
 	var err error
 	var user models.User
 
@@ -28,7 +36,7 @@ func (s *UserService) Create(req requests.NewUserRequest) (models.User, error) {
 
 	user = models.NewUser(req.UserName, req.Email, hashedPassword)
 
-	err = s.userRepository.Create(&user)
+	err = s.repositories.User().Create(&user)
 
 	return user, err
 }

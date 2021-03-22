@@ -29,15 +29,13 @@ func (suite *UserServiceTestSuite) SetupTest() {
 }
 
 func (suite *UserServiceTestSuite) TestNewUserService() {
-	var userRepository repositories.UserRepository
-	var userService = NewUserService(&userRepository)
+	var userService = NewUserService(repositories.Repositories())
 
 	assert.NotNil(suite.T(), userService)
 }
 
 func (suite *UserServiceTestSuite) TestCreateUser() {
-	var userRepository repositories.UserRepository
-	var userService = NewUserService(&userRepository)
+	var userService = Services().User()
 
 	var user models.User
 	var err error

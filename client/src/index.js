@@ -1,9 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
+import axios from 'axios'
 import Signup from 'src/routes/signup'
 import { GlobalStore } from 'src/stores/global'
 import reportWebVitals from './reportWebVitals'
+
+axios.defaults.baseURL = 'http://localhost:8080'
 
 ReactDOM.render(
   <React.StrictMode>

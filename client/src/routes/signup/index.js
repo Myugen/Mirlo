@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Header from 'src/components/header'
 import styled from 'styled-components'
 
@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next'
 import 'src/translations/i18n'
 
 import SignUpForm from './signUpForm'
+import { GlobalStoreContext } from 'src/stores/global'
 
 const Title = styled.h1`
   font-family: 'Source Code Pro', monospace;
@@ -16,6 +17,10 @@ const Title = styled.h1`
 
 const SignUp = () => {
   const { t } = useTranslation()
+
+  const { state: globalStoreState } = useContext(GlobalStoreContext)
+
+  console.log('Global store state: ', globalStoreState)
 
   return (
     <div class="w-screen h-screen bg-gradient-to-br from-gray-800 to-gray-700">

@@ -10,11 +10,10 @@ require (
 	github.com/mattn/go-colorable v0.1.8 // indirect
 	github.com/stretchr/testify v1.7.0
 	github.com/valyala/fasttemplate v1.2.1 // indirect
-	github.com/vmihailenco/msgpack/v5 v5.3.0 // indirect
+	github.com/vmihailenco/msgpack/v5 v5.3.1 // indirect
 	go.opentelemetry.io/otel v0.19.0 // indirect
-	golang.org/x/crypto v0.0.0-20210317152858-513c2a44f670
-	golang.org/x/net v0.0.0-20210316092652-d523dce5a7f4 // indirect
-	golang.org/x/sys v0.0.0-20210320140829-1e4c9ba3b0c4 // indirect
+	golang.org/x/crypto v0.0.0-20210322153248-0c34fe9e7dc2
+	golang.org/x/net v0.0.0-20210324205630-d1beb07c2056 // indirect
 	golang.org/x/text v0.3.5 // indirect
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
 )

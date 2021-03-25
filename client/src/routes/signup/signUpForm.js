@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
+import { GlobalStoreContext } from 'src/stores/global'
 
 import { useTranslation } from 'react-i18next'
 import 'src/translations/i18n'
@@ -27,6 +28,9 @@ const Button = styled.button`
 const SignUpForm = () => {
   const { t } = useTranslation()
 
+  const { state, dispatch } = useContext(GlobalStoreContext)
+  console.log('STATE: ', state)
+
   const SignupSchema = Yup.object().shape({
     username: Yup.string()
       .min(2, t('validations.tooShort'))
@@ -46,11 +50,20 @@ const SignUpForm = () => {
 
   const submitForm = (values) => {
     const { username, password, email } = values
-    axios.post('/users', {
-      username,
-      password,
-      email,
-    })
+    axios
+      .post('/users', {
+        username,
+        password,
+        email,
+      })
+      .then(({ data }) => {
+        dispatch({
+          type: 'SET_USER',
+          payload: {
+            user: data,
+          },
+        })
+      })
   }
 
   return (

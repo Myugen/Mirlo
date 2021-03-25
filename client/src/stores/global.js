@@ -22,7 +22,7 @@ const Reducer = (state, action) => {
     },
   }
 
-  return actions[action.type] || state
+  return actions[action.type] ? actions[action.type]() : state
 }
 
 const GlobalStore = ({ children }) => {

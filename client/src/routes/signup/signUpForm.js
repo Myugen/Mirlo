@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
+import axios from 'axios'
 
 import { useTranslation } from 'react-i18next'
 import 'src/translations/i18n'
@@ -43,6 +44,15 @@ const SignUpForm = () => {
       ),
   })
 
+  const submitForm = (values) => {
+    const { username, password, email } = values
+    axios.post('/users', {
+      username,
+      password,
+      email,
+    })
+  }
+
   return (
     <Formik
       initialValues={{
@@ -52,8 +62,7 @@ const SignUpForm = () => {
       }}
       validationSchema={SignupSchema}
       onSubmit={(values) => {
-        console.log('Hi')
-        console.log(values)
+        submitForm(values)
       }}
     >
       <Form

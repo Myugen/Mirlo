@@ -81,6 +81,35 @@ func (suite *UserServiceTestSuite) TestFindByUserName() {
 	assert.Nil(suite.T(), err)
 	assert.NotNil(suite.T(), foundUser)
 
+	assert.Equal(suite.T(), newUserReq.UserName, foundUser.UserName)
+	assert.Equal(suite.T(), newUserReq.Email, foundUser.Email)
+}
+
+func (suite *UserServiceTestSuite) TestFindByEmail() {
+	var userService = Services().User()
+
+	var user models.User
+	var err error
+
+	var newUserReq = requests.NewUser{
+		UserName: utils.RandString(15),
+		Password: utils.RandString(15),
+		Email:    utils.RandString(15),
+	}
+
+	user, err = userService.Create(newUserReq)
+
+	assert.Nil(suite.T(), err)
+	assert.NotNil(suite.T(), user)
+
+	var foundUser models.User
+	foundUser, err = userService.FindByEmail(newUserReq.Email)
+
+	assert.Nil(suite.T(), err)
+	assert.NotNil(suite.T(), foundUser)
+
+	assert.Equal(suite.T(), newUserReq.UserName, foundUser.UserName)
+	assert.Equal(suite.T(), newUserReq.Email, foundUser.Email)
 }
 
 func TestUserServiceTestSuite(t *testing.T) {

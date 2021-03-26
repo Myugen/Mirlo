@@ -63,6 +63,26 @@ func (suite *UserTestSuite) TestFindByUserName() {
 	assert.Equal(suite.T(), user.Email, foundUser.Email)
 }
 
+func (suite *UserTestSuite) TestFindByEmail() {
+	var user = models.User{
+		UserName: utils.RandString(15),
+		Password: utils.RandString(15),
+		Email:    utils.RandString(15),
+	}
+	var err = Repositories().User().Create(&user)
+	assert.Equal(suite.T(), err, nil)
+
+	var foundUser models.User
+	foundUser, err = Repositories().User().FindByEmail(user.Email)
+
+	assert.Nil(suite.T(), err)
+	assert.NotNil(suite.T(), foundUser)
+
+	assert.Equal(suite.T(), user.UserName, foundUser.UserName)
+	assert.Equal(suite.T(), user.Password, foundUser.Password)
+	assert.Equal(suite.T(), user.Email, foundUser.Email)
+}
+
 func TestUserTestSuite(t *testing.T) {
 	suite.Run(t, new(UserTestSuite))
 }

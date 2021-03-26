@@ -13,6 +13,7 @@ type IUserServiceRepositories interface {
 
 type IUserService interface {
 	Create(req requests.NewUser) (models.User, error)
+	FindByUserName(userName string) (models.User, error)
 }
 
 type userService struct {
@@ -39,4 +40,15 @@ func (s *userService) Create(req requests.NewUser) (models.User, error) {
 	err = s.repositories.User().Create(&user)
 
 	return user, err
+}
+
+func (s *userService) FindByUserName(userName string) (models.User, error) {
+	var err error
+	var user models.User
+
+	if user, err = s.repositories.User().FindByUserName(userName); err != nil {
+		return user, err
+	}
+
+	return user, nil
 }

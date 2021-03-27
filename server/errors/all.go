@@ -19,6 +19,13 @@ var (
 			languages.English: "An account registered with this email already exists",
 		},
 	}
+	ErrUserNameAlreadyRegistered = APIError{
+		HTTPStatusCode: http.StatusConflict,
+		Message: map[types.LanguageKey]string{
+			languages.Spanish: "Ya existe una cuenta registrada con este email",
+			languages.English: "An account registered with this email already exists",
+		},
+	}
 )
 
 // Implementing this method so the Error interface is satisfied

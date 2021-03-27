@@ -12,7 +12,7 @@ import (
 )
 
 type IUserHandlerServices interface {
-	User() services.IUserService
+	SignUp() services.ISignUpService
 }
 
 type userHandler struct {
@@ -28,10 +28,10 @@ func InitializeUserHandler(e *echo.Echo, services services.IServices) *userHandl
 }
 
 func (h *userHandler) registerRoutes(e *echo.Echo) {
-	e.POST("/users", h.Create)
+	e.POST("/users", h.Register)
 }
 
-func (h *userHandler) Create(c echo.Context) error {
+func (h *userHandler) Register(c echo.Context) error {
 	var err error
 
 	var newUserReq requests.NewUser
@@ -40,7 +40,7 @@ func (h *userHandler) Create(c echo.Context) error {
 	}
 
 	var newUser models.User
-	if newUser, err = h.services.User().Create(newUserReq); err != nil {
+	if newUser, err = h.services.SignUp().Register(newUserReq); err != nil {
 		return err
 	}
 

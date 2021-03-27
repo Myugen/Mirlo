@@ -46,7 +46,7 @@ func (suite *UserHandlerTestSuite) TestCreateUser() {
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
 
-	if assert.NoError(suite.T(), suite.handlers.userHandler.Create(c)) {
+	if assert.NoError(suite.T(), suite.handlers.userHandler.Register(c)) {
 		assert.Equal(suite.T(), http.StatusCreated, rec.Code)
 	}
 }

@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"github.com/go-playground/validator/v10"
 	"net/http"
 
 	"github.com/alephshahor/Mirlo/server/mappers"
@@ -36,6 +37,11 @@ func (h *userHandler) Register(c echo.Context) error {
 
 	var newUserReq requests.NewUser
 	if err = c.Bind(&newUserReq); err != nil {
+		return err
+	}
+
+	var validate = validator.New()
+	if err = validate.Struct(newUserReq); err != nil {
 		return err
 	}
 

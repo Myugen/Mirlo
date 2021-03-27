@@ -4,7 +4,7 @@ import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
 import { GlobalStoreContext } from 'src/stores/global'
-
+import ApiErrAlert from 'src/components/alert/apiErr'
 import { useTranslation } from 'react-i18next'
 import 'src/translations/i18n'
 
@@ -28,8 +28,7 @@ const Button = styled.button`
 const SignUpForm = () => {
   const { t } = useTranslation()
 
-  const { state, dispatch } = useContext(GlobalStoreContext)
-  console.log('STATE: ', state)
+  const { dispatch } = useContext(GlobalStoreContext)
 
   const SignupSchema = Yup.object().shape({
     username: Yup.string()
@@ -63,6 +62,9 @@ const SignUpForm = () => {
             user: data,
           },
         })
+      })
+      .catch((err) => {
+        ApiErrAlert('Error!', err.response.data.message)
       })
   }
 

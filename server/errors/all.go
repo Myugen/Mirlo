@@ -30,5 +30,5 @@ var (
 
 // Implementing this method so the Error interface is satisfied
 func (e APIError) Error() string {
-	return e.Message[languages.English]
+	return e.Message[languages.Spanish]
 }

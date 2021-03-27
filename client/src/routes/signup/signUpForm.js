@@ -40,6 +40,8 @@ const SignUpForm = () => {
       .max(320, t('validations.tooLong'))
       .required(t('validations.required')),
     password: Yup.string()
+      .min(16, t('validations.tooShort'))
+      .max(128, t('validations.tooLong'))
       .required(t('validations.required'))
       .matches(
         /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{16,128}$/,

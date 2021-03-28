@@ -37,7 +37,7 @@ func (suite *UserHandlerTestSuite) TestCreateUser() {
 	e := echo.New()
 	var newUserJSON = fmt.Sprintf(`{
 		"username":	"%v",
-		"email": "%v",
+		"email": "%v@email.com",
 		"password": "%v"
 	}`, utils.RandString(16), utils.RandString(16), utils.RandString(16))
 

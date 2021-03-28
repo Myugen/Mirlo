@@ -14,15 +14,11 @@ type services struct {
 
 var servicesInstance *services
 
-func Services() *services {
+func Services() IServices {
 	if servicesInstance == nil {
-		servicesInstance = initializeServices()
+		servicesInstance = &services{}
 	}
 	return servicesInstance
-}
-
-func initializeServices() *services {
-	return &services{}
 }
 
 func (s *services) User() IUserService {

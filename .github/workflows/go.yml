@@ -18,14 +18,6 @@ jobs:
       with:
         go-version: 1.15
 
-    - name: Init 
-      working-directory: ./server
-      run: go mod init
-
-    - name: Tidy
-      working-directory: ./server
-      run: go mod tidy
-
     - name: Build
       working-directory: ./server
       run: go build -v ./...

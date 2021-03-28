@@ -17,24 +17,24 @@ import (
 	"github.com/stretchr/testify/suite"
 )
 
-type UserServiceTestSuite struct {
+type UserServiceDBTestSuite struct {
 	suite.Suite
 }
 
-func (suite *UserServiceTestSuite) SetupTest() {
+func (suite *UserServiceDBTestSuite) SetupTest() {
 	configFilePath := os.Getenv("GOPATH") + "/src/github.com/alephshahor/Mirlo/server/.env"
 	if err := godotenv.Load(configFilePath); err != nil {
 		panic(fmt.Errorf("Fatal error loading .env file: %s \n", err))
 	}
 }
 
-func (suite *UserServiceTestSuite) TestNewUserService() {
+func (suite *UserServiceDBTestSuite) TestNewUserService() {
 	var userService = NewUserService(repositories.Repositories())
 
 	assert.NotNil(suite.T(), userService)
 }
 
-func (suite *UserServiceTestSuite) TestCreateUser() {
+func (suite *UserServiceDBTestSuite) TestCreateUser() {
 	var userService = Services().User()
 
 	var user models.User
@@ -58,7 +58,7 @@ func (suite *UserServiceTestSuite) TestCreateUser() {
 	assert.True(suite.T(), utils.PasswordMatch(newUserReq.Password, user.Password))
 }
 
-func (suite *UserServiceTestSuite) TestFindByUserName() {
+func (suite *UserServiceDBTestSuite) TestFindByUserName() {
 	var userService = Services().User()
 
 	var user models.User
@@ -85,7 +85,7 @@ func (suite *UserServiceTestSuite) TestFindByUserName() {
 	assert.Equal(suite.T(), newUserReq.Email, foundUser.Email)
 }
 
-func (suite *UserServiceTestSuite) TestFindByEmail() {
+func (suite *UserServiceDBTestSuite) TestFindByEmail() {
 	var userService = Services().User()
 
 	var user models.User
@@ -112,6 +112,6 @@ func (suite *UserServiceTestSuite) TestFindByEmail() {
 	assert.Equal(suite.T(), newUserReq.Email, foundUser.Email)
 }
 
-func TestUserServiceTestSuite(t *testing.T) {
-	suite.Run(t, new(UserServiceTestSuite))
+func TestUserServiceDBTestSuite(t *testing.T) {
+	suite.Run(t, new(UserServiceDBTestSuite))
 }

@@ -19,12 +19,12 @@ import (
 	"github.com/stretchr/testify/suite"
 )
 
-type UserHandlerTestSuite struct {
+type UserHandlerDBTestSuite struct {
 	suite.Suite
 	handlers *Handlers
 }
 
-func (suite *UserHandlerTestSuite) SetupTest() {
+func (suite *UserHandlerDBTestSuite) SetupTest() {
 	configFilePath := os.Getenv("GOPATH") + "/src/github.com/alephshahor/Mirlo/server/.env"
 	if err := godotenv.Load(configFilePath); err != nil {
 		panic(fmt.Errorf("Fatal error loading .env file: %s \n", err))
@@ -33,7 +33,7 @@ func (suite *UserHandlerTestSuite) SetupTest() {
 	suite.handlers = InitializeHandlers(e, services.Services())
 }
 
-func (suite *UserHandlerTestSuite) TestCreateUser() {
+func (suite *UserHandlerDBTestSuite) TestCreateUser() {
 	e := echo.New()
 	var newUserJSON = fmt.Sprintf(`{
 		"username":	"%v",
@@ -51,6 +51,6 @@ func (suite *UserHandlerTestSuite) TestCreateUser() {
 	}
 }
 
-func TestUserHandlerTestSuite(t *testing.T) {
-	suite.Run(t, new(UserHandlerTestSuite))
+func TestUserHandlerDBTestSuite(t *testing.T) {
+	suite.Run(t, new(UserHandlerDBTestSuite))
 }

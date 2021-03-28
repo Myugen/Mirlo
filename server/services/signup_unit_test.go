@@ -11,14 +11,14 @@ import (
 	"testing"
 )
 
-type ServiceUpServiceTestSuite struct {
+type SignUpServiceUnitTestSuite struct {
 	suite.Suite
 }
 
-func (suite *ServiceUpServiceTestSuite) SetupTest() {
+func (suite *SignUpServiceUnitTestSuite) SetupTest() {
 }
 
-func (suite *ServiceUpServiceTestSuite) TestRegisterNewUser() {
+func (suite *SignUpServiceUnitTestSuite) TestRegisterNewUser() {
 	var servicesMock = InitializeServicesMock()
 	var repositoriesMock = repositories.InitializeRepositoriesMock()
 	var userServiceMock = &UserServiceMock{}
@@ -49,7 +49,7 @@ func (suite *ServiceUpServiceTestSuite) TestRegisterNewUser() {
 	assert.Nil(suite.T(), err)
 }
 
-func (suite *ServiceUpServiceTestSuite) TestAlreadyRegisteredUserName() {
+func (suite *SignUpServiceUnitTestSuite) TestAlreadyRegisteredUserName() {
 	var servicesMock = InitializeServicesMock()
 	var repositoriesMock = repositories.InitializeRepositoriesMock()
 	var userServiceMock = &UserServiceMock{}
@@ -75,7 +75,7 @@ func (suite *ServiceUpServiceTestSuite) TestAlreadyRegisteredUserName() {
 	assert.Equal(suite.T(), errors.ErrUserNameAlreadyRegistered, err)
 }
 
-func (suite *ServiceUpServiceTestSuite) TestAlreadyRegisteredEmail() {
+func (suite *SignUpServiceUnitTestSuite) TestAlreadyRegisteredEmail() {
 	var servicesMock = InitializeServicesMock()
 	var repositoriesMock = repositories.InitializeRepositoriesMock()
 	var userServiceMock = &UserServiceMock{}
@@ -105,6 +105,6 @@ func (suite *ServiceUpServiceTestSuite) TestAlreadyRegisteredEmail() {
 	assert.Equal(suite.T(), errors.ErrEmailAlreadyRegistered, err)
 }
 
-func TestServiceUpServiceTestSuite(t *testing.T) {
-	suite.Run(t, new(ServiceUpServiceTestSuite))
+func TestSignUpServiceUnitTestSuite(t *testing.T) {
+	suite.Run(t, new(SignUpServiceUnitTestSuite))
 }

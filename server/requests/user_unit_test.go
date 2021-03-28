@@ -9,14 +9,14 @@ import (
 	"testing"
 )
 
-type UserRequestTestSuite struct {
+type UserRequestUnitTestSuite struct {
 	suite.Suite
 }
 
-func (suite *UserRequestTestSuite) SetupTest() {
+func (suite *UserRequestUnitTestSuite) SetupTest() {
 }
 
-func (suite *UserRequestTestSuite) TestNewUserRequestValidator() {
+func (suite *UserRequestUnitTestSuite) TestNewUserRequestValidator() {
 	var err error
 	var validate = validator.New()
 	var validationErrs validator.ValidationErrors
@@ -85,6 +85,6 @@ func (suite *UserRequestTestSuite) TestNewUserRequestValidator() {
 	assert.Equal(suite.T(), "lte", validationErrs[0].Tag())
 }
 
-func TestUserRequestTestSuite(t *testing.T) {
-	suite.Run(t, new(UserRequestTestSuite))
+func TestUserRequestUnitTestSuite(t *testing.T) {
+	suite.Run(t, new(UserRequestUnitTestSuite))
 }

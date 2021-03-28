@@ -8,7 +8,7 @@ type ServicesMock struct {
 	mock.Mock
 }
 
-func InitializeServicesMock() IServices {
+func InitializeServicesMock() *ServicesMock {
 	return &ServicesMock{}
 }
 

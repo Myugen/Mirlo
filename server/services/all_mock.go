@@ -4,20 +4,20 @@ import (
 	"github.com/stretchr/testify/mock"
 )
 
-type ServiceMock struct {
+type ServicesMock struct {
 	mock.Mock
 }
 
-func InitializeServiceMock() *ServiceMock {
-	return &ServiceMock{}
+func InitializeServicesMock() *ServicesMock {
+	return &ServicesMock{}
 }
 
-func (m *ServiceMock) User() IUserService {
+func (m *ServicesMock) User() IUserService {
 	args := m.Called()
 	return args.Get(0).(IUserService)
 }
 
-func (m *ServiceMock) SignUp() ISignUpService {
+func (m *ServicesMock) SignUp() ISignUpService {
 	args := m.Called()
 	return args.Get(0).(ISignUpService)
 }

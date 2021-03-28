@@ -4,10 +4,8 @@ import (
 	"fmt"
 	"github.com/alephshahor/Mirlo/server/utils"
 	"github.com/go-playground/validator/v10"
-	"github.com/joho/godotenv"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
-	"os"
 	"testing"
 )
 
@@ -16,10 +14,6 @@ type UserRequestTestSuite struct {
 }
 
 func (suite *UserRequestTestSuite) SetupTest() {
-	configFilePath := os.Getenv("GOPATH") + "/src/github.com/alephshahor/Mirlo/server/.env"
-	if err := godotenv.Load(configFilePath); err != nil {
-		panic(fmt.Errorf("Fatal error loading .env file: %s \n", err))
-	}
 }
 
 func (suite *UserRequestTestSuite) TestNewUserRequestValidator() {

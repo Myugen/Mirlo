@@ -14,18 +14,18 @@ import (
 	"github.com/stretchr/testify/suite"
 )
 
-type UserTestSuite struct {
+type UserDBTestSuite struct {
 	suite.Suite
 }
 
-func (suite *UserTestSuite) SetupTest() {
+func (suite *UserDBTestSuite) SetupTest() {
 	configFilePath := os.Getenv("GOPATH") + "/src/github.com/alephshahor/Mirlo/server/.env"
 	if err := godotenv.Load(configFilePath); err != nil {
 		panic(fmt.Errorf("Fatal error loading .env file: %s \n", err))
 	}
 }
 
-func (suite *UserTestSuite) TestCreateUser() {
+func (suite *UserDBTestSuite) TestCreateUser() {
 	var user = models.User{
 		UserName: utils.RandString(15),
 		Password: utils.RandString(15),
@@ -43,7 +43,7 @@ func (suite *UserTestSuite) TestCreateUser() {
 	assert.Equal(suite.T(), user.Email, createdUser.Email)
 }
 
-func (suite *UserTestSuite) TestFindByUserName() {
+func (suite *UserDBTestSuite) TestFindByUserName() {
 	var user = models.User{
 		UserName: utils.RandString(15),
 		Password: utils.RandString(15),
@@ -63,7 +63,7 @@ func (suite *UserTestSuite) TestFindByUserName() {
 	assert.Equal(suite.T(), user.Email, foundUser.Email)
 }
 
-func (suite *UserTestSuite) TestFindByEmail() {
+func (suite *UserDBTestSuite) TestFindByEmail() {
 	var user = models.User{
 		UserName: utils.RandString(15),
 		Password: utils.RandString(15),
@@ -83,6 +83,6 @@ func (suite *UserTestSuite) TestFindByEmail() {
 	assert.Equal(suite.T(), user.Email, foundUser.Email)
 }
 
-func TestUserTestSuite(t *testing.T) {
-	suite.Run(t, new(UserTestSuite))
+func TestUserDBTestSuite(t *testing.T) {
+	suite.Run(t, new(UserDBTestSuite))
 }

@@ -9,3 +9,6 @@ unit-tests:
 
 db-tests:
 	go test ./... -tags=db_test
+
+test-all:
+	go test ./... -tags="unit_test,db_test"

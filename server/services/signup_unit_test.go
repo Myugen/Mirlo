@@ -1,72 +1,29 @@
 package services
 
 import (
-	"fmt"
 	"github.com/alephshahor/Mirlo/server/errors"
 	"github.com/alephshahor/Mirlo/server/models"
 	"github.com/alephshahor/Mirlo/server/repositories"
 	"github.com/alephshahor/Mirlo/server/requests"
 	"github.com/alephshahor/Mirlo/server/utils"
-	"github.com/joho/godotenv"
 	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
-	"os"
 	"testing"
 )
-
-type MockedService struct {
-	mock.Mock
-	userService *MockedUserService
-}
-
-func InitializeMockedService() MockedService {
-	return MockedService{
-		userService: &MockedUserService{},
-	}
-}
-
-func (m *MockedService) User() IUserService {
-	return m.userService
-}
-
-func (m *MockedService) SignUp() ISignUpService {
-	return NewSignUpService(repositories.Repositories(), m)
-}
-
-type MockedUserService struct {
-	mock.Mock
-}
-
-func (m *MockedUserService) Create(req requests.NewUser) (models.User, error) {
-	args := m.Called(req)
-	return args.Get(0).(models.User), args.Error(1)
-}
-
-func (m *MockedUserService) FindByUserName(userName string) (models.User, error) {
-	args := m.Called(userName)
-	return args.Get(0).(models.User), args.Error(1)
-}
-
-func (m *MockedUserService) FindByEmail(email string) (models.User, error) {
-	args := m.Called(email)
-	return args.Get(0).(models.User), args.Error(1)
-}
 
 type ServiceUpServiceTestSuite struct {
 	suite.Suite
 }
 
 func (suite *ServiceUpServiceTestSuite) SetupTest() {
-	configFilePath := os.Getenv("GOPATH") + "/src/github.com/alephshahor/Mirlo/server/.env"
-	if err := godotenv.Load(configFilePath); err != nil {
-		panic(fmt.Errorf("Fatal error loading .env file: %s \n", err))
-	}
 }
 
 func (suite *ServiceUpServiceTestSuite) TestRegisterNewUser() {
-	var services = InitializeMockedService()
-	var signUpService = services.SignUp()
+	var servicesMock = InitializeServicesMock()
+	var repositoriesMock = repositories.InitializeRepositoriesMock()
+	var userServiceMock = &UserServiceMock{}
+	servicesMock.On("User").Return(userServiceMock)
+	var signUpService = NewSignUpService(repositoriesMock, servicesMock)
 
 	assert.NotNil(suite.T(), signUpService)
 
@@ -78,23 +35,26 @@ func (suite *ServiceUpServiceTestSuite) TestRegisterNewUser() {
 		Email:    utils.RandString(15),
 	}
 
-	services.userService.On("FindByUserName", newUserReq.UserName).Return(models.User{
+	userServiceMock.On("FindByUserName", newUserReq.UserName).Return(models.User{
 		UserName: "",
 	}, nil)
 
-	services.userService.On("FindByEmail", newUserReq.Email).Return(models.User{
+	userServiceMock.On("FindByEmail", newUserReq.Email).Return(models.User{
 		Email: "",
 	}, nil)
 
-	services.userService.On("Create", newUserReq).Return(models.User{}, nil)
+	userServiceMock.On("Create", newUserReq).Return(models.User{}, nil)
 
 	_, err = signUpService.Register(newUserReq)
 	assert.Nil(suite.T(), err)
 }
 
 func (suite *ServiceUpServiceTestSuite) TestAlreadyRegisteredUserName() {
-	var services = InitializeMockedService()
-	var signUpService = services.SignUp()
+	var servicesMock = InitializeServicesMock()
+	var repositoriesMock = repositories.InitializeRepositoriesMock()
+	var userServiceMock = &UserServiceMock{}
+	servicesMock.On("User").Return(userServiceMock)
+	var signUpService = NewSignUpService(repositoriesMock, servicesMock)
 
 	assert.NotNil(suite.T(), signUpService)
 
@@ -106,7 +66,7 @@ func (suite *ServiceUpServiceTestSuite) TestAlreadyRegisteredUserName() {
 		Email:    utils.RandString(15),
 	}
 
-	services.userService.On("FindByUserName", newUserReq.UserName).Return(models.User{
+	userServiceMock.On("FindByUserName", newUserReq.UserName).Return(models.User{
 		UserName: newUserReq.UserName,
 	}, nil)
 
@@ -116,8 +76,11 @@ func (suite *ServiceUpServiceTestSuite) TestAlreadyRegisteredUserName() {
 }
 
 func (suite *ServiceUpServiceTestSuite) TestAlreadyRegisteredEmail() {
-	var services = InitializeMockedService()
-	var signUpService = services.SignUp()
+	var servicesMock = InitializeServicesMock()
+	var repositoriesMock = repositories.InitializeRepositoriesMock()
+	var userServiceMock = &UserServiceMock{}
+	servicesMock.On("User").Return(userServiceMock)
+	var signUpService = NewSignUpService(repositoriesMock, servicesMock)
 
 	assert.NotNil(suite.T(), signUpService)
 
@@ -129,11 +92,11 @@ func (suite *ServiceUpServiceTestSuite) TestAlreadyRegisteredEmail() {
 		Email:    utils.RandString(15),
 	}
 
-	services.userService.On("FindByUserName", newUserReq.UserName).Return(models.User{
+	userServiceMock.On("FindByUserName", newUserReq.UserName).Return(models.User{
 		UserName: "",
 	}, nil)
 
-	services.userService.On("FindByEmail", newUserReq.Email).Return(models.User{
+	userServiceMock.On("FindByEmail", newUserReq.Email).Return(models.User{
 		Email: utils.RandString(16),
 	}, nil)
 

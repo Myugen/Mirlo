@@ -13,18 +13,18 @@ import (
 	"testing"
 )
 
-type SignUpServiceTestSuite struct {
+type SignUpServiceDBTestSuite struct {
 	suite.Suite
 }
 
-func (suite *SignUpServiceTestSuite) SetupTest() {
+func (suite *SignUpServiceDBTestSuite) SetupTest() {
 	configFilePath := os.Getenv("GOPATH") + "/src/github.com/alephshahor/Mirlo/server/.env"
 	if err := godotenv.Load(configFilePath); err != nil {
 		panic(fmt.Errorf("Fatal error loading .env file: %s \n", err))
 	}
 }
 
-func (suite *SignUpServiceTestSuite) TestRegisterUser() {
+func (suite *SignUpServiceDBTestSuite) TestRegisterUser() {
 	var services = Services()
 	var signUpService = services.SignUp()
 	var userService = services.User()
@@ -65,6 +65,6 @@ func (suite *SignUpServiceTestSuite) TestRegisterUser() {
 	assert.Equal(suite.T(), err, errors.ErrEmailAlreadyRegistered)
 }
 
-func TestSignUpServiceTestSuite(t *testing.T) {
-	suite.Run(t, new(SignUpServiceTestSuite))
+func TestSignUpServiceDBTestSuite(t *testing.T) {
+	suite.Run(t, new(SignUpServiceDBTestSuite))
 }

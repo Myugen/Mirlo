@@ -1,9 +1,10 @@
 package errors
 
 import (
+	"net/http"
+
 	"github.com/alephshahor/Mirlo/server/enums/languages"
 	"github.com/alephshahor/Mirlo/server/types"
-	"net/http"
 )
 
 type APIError struct {
@@ -24,6 +25,20 @@ var (
 		Message: map[types.LanguageKey]string{
 			languages.Spanish: "Ya existe una cuenta registrada con este nombre de usuario",
 			languages.English: "An account registered with this user name already exists",
+		},
+	}
+	ErrInvalidLoginCredentials = APIError{
+		HTTPStatusCode: http.StatusBadRequest,
+		Message: map[types.LanguageKey]string{
+			languages.Spanish: "Las credenciales proporcionadas son inválidas",
+			languages.English: "The provided credentials are invalid",
+		},
+	}
+	ErrUserNotFound = APIError{
+		HTTPStatusCode: http.StatusNotFound,
+		Message: map[types.LanguageKey]string{
+			languages.Spanish: "El usuario no ha sido encontrado",
+			languages.English: "User not found",
 		},
 	}
 )

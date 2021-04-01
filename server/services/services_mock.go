@@ -21,3 +21,8 @@ func (m *ServicesMock) SignUp() ISignUpService {
 	args := m.Called()
 	return args.Get(0).(ISignUpService)
 }
+
+func (m *ServicesMock) LogIn() ILogInService {
+	args := m.Called()
+	return args.Get(0).(ILogInService)
+}

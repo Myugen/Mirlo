@@ -20,7 +20,7 @@ type SignUpServiceDBTestSuite struct {
 }
 
 func (suite *SignUpServiceDBTestSuite) SetupTest() {
-	configFilePath := os.Getenv("GOPATH") + "/src/github.com/alephshahor/Mirlo/server/.env"
+	configFilePath := os.Getenv("GOPATH") + "/src/github.com/alephshahor/Mirlo/server/.env.test"
 	if err := godotenv.Load(configFilePath); err != nil {
 		panic(fmt.Errorf("Fatal error loading .env file: %s \n", err))
 	}

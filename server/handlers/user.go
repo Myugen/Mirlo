@@ -50,8 +50,8 @@ func (h *userHandler) Register(c echo.Context) error {
 		return err
 	}
 
-	var newUserRes responses.NewUser
-	newUserRes = mappers.UserModelToNewUserResponse(newUser)
+	var newUserRes responses.User
+	newUserRes = mappers.UserModelToUserResponse(newUser)
 
 	return c.JSON(http.StatusCreated, newUserRes)
 }

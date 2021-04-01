@@ -3,12 +3,9 @@ package services
 import (
 	"github.com/alephshahor/Mirlo/server/errors"
 	"github.com/alephshahor/Mirlo/server/models"
-	"github.com/alephshahor/Mirlo/server/repositories"
 	"github.com/alephshahor/Mirlo/server/requests"
 	"github.com/go-pg/pg/v10"
 )
-
-type ISignUpServiceRepositories interface{}
 
 type ISignUpServiceServices interface {
 	User() IUserService
@@ -19,14 +16,12 @@ type ISignUpService interface {
 }
 
 type signUpService struct {
-	repositories ISignUpServiceRepositories
-	services     ISignUpServiceServices
+	services ISignUpServiceServices
 }
 
-func NewSignUpService(repositories repositories.IRepositories, services IServices) *signUpService {
+func NewSignUpService(services IServices) *signUpService {
 	return &signUpService{
-		repositories: repositories,
-		services:     services,
+		services: services,
 	}
 }
 

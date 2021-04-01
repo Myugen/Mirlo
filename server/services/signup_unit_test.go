@@ -3,14 +3,14 @@
 package services
 
 import (
+	"testing"
+
 	"github.com/alephshahor/Mirlo/server/errors"
 	"github.com/alephshahor/Mirlo/server/models"
-	"github.com/alephshahor/Mirlo/server/repositories"
 	"github.com/alephshahor/Mirlo/server/requests"
 	"github.com/alephshahor/Mirlo/server/utils"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
-	"testing"
 )
 
 type SignUpServiceUnitTestSuite struct {
@@ -22,10 +22,9 @@ func (suite *SignUpServiceUnitTestSuite) SetupTest() {
 
 func (suite *SignUpServiceUnitTestSuite) TestRegisterNewUser() {
 	var servicesMock = InitializeServicesMock()
-	var repositoriesMock = repositories.InitializeRepositoriesMock()
 	var userServiceMock = &UserServiceMock{}
 	servicesMock.On("User").Return(userServiceMock)
-	var signUpService = NewSignUpService(repositoriesMock, servicesMock)
+	var signUpService = NewSignUpService(servicesMock)
 
 	assert.NotNil(suite.T(), signUpService)
 
@@ -53,10 +52,9 @@ func (suite *SignUpServiceUnitTestSuite) TestRegisterNewUser() {
 
 func (suite *SignUpServiceUnitTestSuite) TestAlreadyRegisteredUserName() {
 	var servicesMock = InitializeServicesMock()
-	var repositoriesMock = repositories.InitializeRepositoriesMock()
 	var userServiceMock = &UserServiceMock{}
 	servicesMock.On("User").Return(userServiceMock)
-	var signUpService = NewSignUpService(repositoriesMock, servicesMock)
+	var signUpService = NewSignUpService(servicesMock)
 
 	assert.NotNil(suite.T(), signUpService)
 
@@ -79,10 +77,9 @@ func (suite *SignUpServiceUnitTestSuite) TestAlreadyRegisteredUserName() {
 
 func (suite *SignUpServiceUnitTestSuite) TestAlreadyRegisteredEmail() {
 	var servicesMock = InitializeServicesMock()
-	var repositoriesMock = repositories.InitializeRepositoriesMock()
 	var userServiceMock = &UserServiceMock{}
 	servicesMock.On("User").Return(userServiceMock)
-	var signUpService = NewSignUpService(repositoriesMock, servicesMock)
+	var signUpService = NewSignUpService(servicesMock)
 
 	assert.NotNil(suite.T(), signUpService)
 

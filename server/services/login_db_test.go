@@ -1,3 +1,5 @@
+//+build db_test
+
 package services
 
 import (

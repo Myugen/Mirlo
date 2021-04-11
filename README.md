@@ -6,7 +6,7 @@ Mirlo is a social gathering app to schedule meetings with friends.
 
 In the current days social media has become a massively used tool, almost as an extension of ourselves, they're everywhere and used by almost everyone. Even though they claim to be _social_, that component seems to be missing in the equation, there's no social component in their business model. Their users spend more time behind a screen interacting with unrealistic persona than indeed creating social bonds between them.
 
-_Mirlo_ aims to be change in the opposite direction.
+_Mirlo_ aims to be a change in the opposite direction.
 
 The purpose of _Mirlo_ is indeed for the user to spend as little time as possible inside the app and maximize their social interactions in the _non-virtual_ world. It works by facilitating plan scheduling between people.
 

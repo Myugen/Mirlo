@@ -12,7 +12,7 @@ The purpose of _Mirlo_ is indeed for the user to spend as little time as possibl
 
 ### Build Status
 
- ![workflow] https://github.com/alephshahor/Mirlo/actions/workflows/go.yml/badge.svg
+ ![workflow](https://github.com/alephshahor/Mirlo/actions/workflows/go.yml/badge.svg)
 
 ### Contributing
 

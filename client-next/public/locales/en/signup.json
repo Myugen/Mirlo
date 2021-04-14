@@ -1,18 +1,18 @@
 {
-  "title": "Registrarse",
-  "next": "Siguiente",
+  "title": "Sign in",
+  "next": "Next",
   "form": {
     "fields": {
       "username": {
-        "title": "Nombre de usuario",
+        "title": "Username",
         "example": "Ej: JoeDoe"
       },
       "email": {
-        "title": "Correo electrónico",
+        "title": "Email",
         "example": "Ej: joe@email.com"
       },
       "password": {
-        "title": "Contraseña",
+        "title": "Password",
         "example": "Ej: 9#/~Y[QR#Q2Ny&q:"
       }
     }

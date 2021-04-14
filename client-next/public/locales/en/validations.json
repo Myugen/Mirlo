@@ -1,0 +1,6 @@
+{
+  "required": "Required field",
+  "tooShort": "Too short",
+  "tooLong": "Too long",
+  "passwordRequirements": "It must contains at least 16 characters, including a lowercase, a uppercase, a digit and a special character"
+}

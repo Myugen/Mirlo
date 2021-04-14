@@ -1,0 +1,20 @@
+{
+  "title": "Sign in",
+  "next": "Next",
+  "form": {
+    "fields": {
+      "username": {
+        "title": "Username",
+        "example": "Ej: JoeDoe"
+      },
+      "email": {
+        "title": "Email",
+        "example": "Ej: joe@email.com"
+      },
+      "password": {
+        "title": "Password",
+        "example": "Ej: 9#/~Y[QR#Q2Ny&q:"
+      }
+    }
+  }
+}

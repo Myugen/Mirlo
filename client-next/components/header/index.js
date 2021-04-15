@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useTranslation } from 'next-i18next'
+import { useRouter } from 'next/dist/client/router'
 
 const Title = styled.div`
   flex: 3;
@@ -14,7 +15,7 @@ const Logout = styled.div`
   justify-content: flex-end;
 `
 
-const TitleButton = styled.button`
+const TitleHeader = styled.a`
   font-size: 1.5rem;
   text-align: center;
   color: white;
@@ -36,7 +37,7 @@ const LogoutButton = styled.button`
   }
 `
 
-const Wrapper = styled.div`
+const Wrapper = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -47,11 +48,19 @@ const Wrapper = styled.div`
 
 const Header = () => {
   const { t } = useTranslation()
+  const router = useRouter()
+
+  const handleTitleClick = (e) => {
+    e.preventDefault()
+    router.push('/')
+  }
 
   return (
     <Wrapper>
       <Title>
-        <TitleButton>{t('title')}</TitleButton>
+        <TitleHeader href="/" onClick={handleTitleClick}>
+          {t('title')}
+        </TitleHeader>
       </Title>
       <Logout>
         <LogoutButton>{t('header.logOut')}</LogoutButton>

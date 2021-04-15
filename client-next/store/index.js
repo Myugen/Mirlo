@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useReducer } from 'react'
 import PropTypes from 'prop-types'
+import { ContextDevTool } from 'react-context-devtool'
 import { userActions, userInitialState } from './actions/user'
 
 const initialState = {
@@ -21,7 +22,21 @@ const Reducer = (state, action) => {
 export const StoreProvider = ({ children }) => {
   const [state, dispatch] = useReducer(Reducer, initialState)
   const { Provider } = StoreContext
-  return <Provider value={{ state, dispatch }}>{children}</Provider>
+
+  const reactContextDevtoolFlag = global._REACT_CONTEXT_DEVTOOL
+
+  return (
+    <Provider value={{ state, dispatch }}>
+      {!!reactContextDevtoolFlag && (
+        <ContextDevTool
+          context={StoreContext}
+          id="storeCtx"
+          displayName="Store current state"
+        />
+      )}
+      {children}
+    </Provider>
+  )
 }
 
 StoreProvider.propTypes = {

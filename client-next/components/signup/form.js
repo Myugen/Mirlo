@@ -2,10 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
-import useSwr from 'swr'
 import { useTranslation } from 'next-i18next'
 
 import { useStore } from 'store'
+import { api } from 'services'
 import { ApiErrorAlert } from '../alert'
 import { FormField } from '../form'
 
@@ -28,7 +28,7 @@ const SignUpForm = () => {
   const { t: signupT } = useTranslation('signup')
   const { t: validationsT } = useTranslation('validations')
 
-  const { dispatch } = useStore
+  const { dispatch } = useStore()
 
   const SignupSchema = Yup.object().shape({
     username: Yup.string()
@@ -49,25 +49,23 @@ const SignUpForm = () => {
       ),
   })
 
-  const submitForm = (values) => {
+  const submitForm = async (values) => {
     const { username, password, email } = values
-    axios
-      .post('/users', {
+    try {
+      const { data } = await api.create('users', {
         username,
         password,
         email,
       })
-      .then(({ data }) => {
-        dispatch({
-          type: 'SET_USER',
-          payload: {
-            user: data,
-          },
-        })
+      dispatch({
+        type: 'SET_USER',
+        payload: {
+          user: data,
+        },
       })
-      .catch((err) => {
-        ApiErrorAlert('Error!', err.response.data.message)
-      })
+    } catch (err) {
+      ApiErrorAlert('Error!', err)
+    }
   }
 
   return (
@@ -78,9 +76,7 @@ const SignUpForm = () => {
         password: '',
       }}
       validationSchema={SignupSchema}
-      onSubmit={(values) => {
-        submitForm(values)
-      }}
+      onSubmit={submitForm}
     >
       <Form
         style={{
@@ -112,7 +108,7 @@ const SignUpForm = () => {
           />
         </div>
         <div className="w-full h-1/4 flex items-center justify-center">
-          <Button>{signupT('next')}</Button>
+          <Button type="submit">{signupT('next')}</Button>
         </div>
       </Form>
     </Formik>
